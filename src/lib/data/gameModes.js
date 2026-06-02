@@ -26,6 +26,11 @@ export const GAME_MODES = {
           'Descubre al futbolista con pistas de posición, nacionalidad, club y más.',
         tags: ['🧩 Hasta 10 rondas', '🎯 Opciones múltiples', '🏅 Ranking'],
       },
+      hiddenCareer: {
+        title: 'Carrera Oculta',
+        description: 'Adivina al jugador por los clubes en los que ha jugado a lo largo de su carrera.',
+        tags: ['🕵️ 15 rondas', '⏱️ Tiempo límite', '🏅 Ranking'],
+      },
     },
   },
   'world-cup': {
@@ -64,8 +69,14 @@ export const GAME_MODES = {
           'Identifica jugadores de selecciones usando pistas progresivas y suma más con menos pistas.',
         tags: ['🧠 Hasta 10 rondas', '🎯 Opciones múltiples', '🌎 Ranking Mundial'],
       },
+      hiddenCareer: {
+        title: 'Carrera Oculta Mundialista',
+        description: 'Adivina al jugador leyenda por los clubes en los que ha jugado a lo largo de su carrera.',
+        tags: ['🕵️ 15 rondas', '⏱️ Tiempo límite', '🌎 Ranking Mundial'],
+      },
     },
   },
+
 };
 
 export function getGameMode(mode) {

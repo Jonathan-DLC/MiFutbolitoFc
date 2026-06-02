@@ -7,6 +7,7 @@ import WorldFlagGame from '@/components/WorldFlagGame';
 import PlayerCluesGame from '@/components/PlayerCluesGame';
 import WorldSprintGame from '@/components/WorldSprintGame';
 import WorldPlayerPhotoGame from '@/components/WorldPlayerPhotoGame';
+import HiddenCareerGame from '@/components/HiddenCareerGame';
 import { DEFAULT_GAME_MODE, GAME_MODES, getGameMode } from '@/lib/data/gameModes';
 import styles from './page.module.css';
 
@@ -19,6 +20,12 @@ const GAME_CARDS_BY_MODE = {
       configKey: 'playerClues',
       icon: '🧠',
       colorClass: 'gameCardCyan',
+    },
+    {
+      id: 'hidden-career',
+      configKey: 'hiddenCareer',
+      icon: '🕵️',
+      colorClass: 'gameCardOrange',
     },
   ],
   'world-cup': [
@@ -47,7 +54,14 @@ const GAME_CARDS_BY_MODE = {
       icon: '🧠',
       colorClass: 'gameCardCyan',
     },
+    {
+      id: 'hidden-career',
+      configKey: 'hiddenCareer',
+      icon: '🕵️',
+      colorClass: 'gameCardOrange',
+    },
   ],
+
 };
 
 export default function GamesClient({ datasets }) {
@@ -155,6 +169,21 @@ export default function GamesClient({ datasets }) {
       </section>
     );
   }
+
+  if (activeGame === 'hidden-career') {
+    return (
+      <section className="section" ref={gameSectionRef}>
+        <div className="container">
+          <button className={styles.backBtn} onClick={() => setActiveGame(null)}>
+            ← Volver a Juegos
+          </button>
+          <HiddenCareerGame mode={activeMode} />
+        </div>
+      </section>
+    );
+  }
+
+
 
   return (
     <section className="section">

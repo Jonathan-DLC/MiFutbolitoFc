@@ -1,16 +1,18 @@
 .card {
-  background: var(--bg-card);
+  background: linear-gradient(135deg, rgba(26, 32, 53, 0.6) 0%, rgba(18, 24, 41, 0.8) 100%);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: var(--space-lg);
   transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
   min-width: 300px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card);
-  border-color: var(--glass-border);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 10px 30px rgba(0, 242, 96, 0.1), var(--shadow-card);
+  border-color: rgba(0, 242, 96, 0.3);
 }
 
 .meta {

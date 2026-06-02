@@ -2,6 +2,7 @@ import { neon } from '@neondatabase/serverless';
 
 // Singleton instance to prevent multiple connections during hot-reloading in dev.
 let sql;
+let tableInitialized = false;
 
 if (process.env.DATABASE_URL) {
   sql = neon(process.env.DATABASE_URL);
@@ -12,7 +13,7 @@ export { sql };
 // Función auxiliar para inicializar la tabla si no existe.
 // Idealmente se debería hacer con migraciones, pero para este caso rápido:
 export async function createTableIfNotExists() {
-  if (!sql) return;
+  if (!sql || tableInitialized) return;
   try {
     await sql`
       CREATE TABLE IF NOT EXISTS leaderboards (
@@ -30,6 +31,8 @@ export async function createTableIfNotExists() {
       ALTER TABLE leaderboards
       ADD COLUMN IF NOT EXISTS stats_json JSONB;
     `;
+    
+    tableInitialized = true;
   } catch (error) {
     console.error('Error creating leaderboards table:', error);
   }

@@ -2,7 +2,9 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--border-subtle);
-  background: var(--bg-card);
+  background: linear-gradient(135deg, rgba(26, 32, 53, 0.5) 0%, rgba(18, 24, 41, 0.7) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .tableWrap {
@@ -58,7 +60,7 @@
 }
 
 .row:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 242, 96, 0.03);
 }
 
 .rowTop {
