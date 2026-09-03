@@ -4,10 +4,31 @@ import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 export const metadata = {
-  title: 'MiFutbolitoFc — Fútbol, Estadísticas y Minijuegos',
-  description:
-    'Tu portal de fútbol con resultados, tablas de posiciones, equipos y jugadores. Incluye modos de juego de la Champions y el Mundial.',
-  keywords: ['fútbol', 'estadísticas', 'resultados', 'posiciones', 'minijuegos', 'champions'],
+  title: {
+    default: 'MiFutbolitoFc — Fútbol, Estadísticas y Minijuegos',
+    template: '%s | MiFutbolitoFc'
+  },
+  description: 'Tu portal de fútbol con resultados en vivo, tablas de posiciones, equipos y jugadores. Compara estadísticas y diviértete con minijuegos.',
+  keywords: ['fútbol', 'estadísticas', 'resultados', 'posiciones', 'minijuegos', 'champions league', 'premier league', 'la liga'],
+  authors: [{ name: 'Jonathan Lozano' }],
+  creator: 'Jonathan Lozano',
+  openGraph: {
+    title: 'MiFutbolitoFc — Fútbol, Estadísticas y Minijuegos',
+    description: 'Resultados en vivo, posiciones y estadísticas detalladas de las 7 mejores ligas del mundo.',
+    url: 'https://mifutbolitofc.vercel.app', // Update with actual domain if different
+    siteName: 'MiFutbolitoFc',
+    locale: 'es_CO',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MiFutbolitoFc — El Centro del Fútbol',
+    description: 'Sigue a tu equipo favorito, compara jugadores y no te pierdas un solo resultado.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  }
 };
 
 export default function RootLayout({ children }) {

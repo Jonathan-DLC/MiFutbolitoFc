@@ -1,77 +1,41 @@
+import Skeleton from '@/components/Skeleton';
+import styles from './page.module.css';
+
 export default function LigaLoading() {
   return (
-    <div className="container" style={{ paddingBottom: '4rem' }}>
-      {/* Esqueleto del Header */}
-      <div
-        className="skeleton"
-        style={{
-          width: '100%',
-          height: '280px',
-          borderRadius: 'var(--radius-lg)',
-          marginTop: '2rem',
-          marginBottom: '3rem',
-        }}
-      />
-
-      {/* Esqueleto de la Tabla de Posiciones */}
-      <div style={{ marginBottom: '4rem' }}>
-        <div
-          className="skeleton"
-          style={{ width: '220px', height: '32px', marginBottom: '1.5rem' }}
-        />
-        <div
-          style={{
-            background: 'var(--glass-bg)',
-            border: '1px solid var(--glass-border)',
-            borderRadius: 'var(--radius-md)',
-            padding: '1.5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem',
-          }}
-        >
-          {/* Fila Cabecera */}
-          <div className="skeleton" style={{ width: '100%', height: '24px' }} />
-          {/* Filas */}
-          {Array.from({ length: 8 }).map((_, i) => (
-            <div
-              key={i}
-              className="skeleton"
-              style={{
-                width: '100%',
-                height: '42px',
-                opacity: 1 - i * 0.1,
-              }}
-            />
-          ))}
+    <>
+      <section className={styles.header}>
+        <div className={`container ${styles.headerContent}`}>
+          <Skeleton type="circle" width="80px" height="80px" style={{ marginBottom: '1rem', margin: '0 auto' }} />
+          <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '1rem' }}>
+            <Skeleton type="title" width="40%" height="60px" />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+            <Skeleton type="text" width="60%" height="24px" />
+            <Skeleton type="text" width="55%" height="24px" />
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Esqueleto de Últimos Resultados */}
-      <div>
-        <div
-          className="skeleton"
-          style={{ width: '200px', height: '32px', marginBottom: '1.5rem' }}
-        />
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            gap: '1.5rem',
-          }}
-        >
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div
-              key={i}
-              className="skeleton"
-              style={{
-                height: '140px',
-                borderRadius: 'var(--radius-md)',
-              }}
-            />
-          ))}
+      <section className="section">
+        <div className="container">
+          <div className="section-title">
+            <Skeleton type="text" width="200px" height="32px" />
+          </div>
+          <Skeleton type="box" width="100%" height="400px" />
         </div>
-      </div>
-    </div>
+      </section>
+      
+      <section className="section">
+        <div className="container">
+          <div className="section-title">
+            <Skeleton type="text" width="200px" height="32px" />
+          </div>
+          <div className={styles.matchGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1.5rem' }}>
+             {[1, 2, 3, 4].map(i => <Skeleton key={i} type="box" width="100%" height="150px" />)}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
