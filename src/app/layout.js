@@ -1,32 +1,21 @@
-import { Bebas_Neue, DM_Sans } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
-const bebasNeue = Bebas_Neue({
-  weight: '400',
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-});
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap',
-});
-
 export const metadata = {
-  title: 'MiFutbolitoFc — Liga BetPlay & Premier League',
+  title: 'MiFutbolitoFc — Fútbol, Estadísticas y Minijuegos',
   description:
-    'Tu portal de fútbol con resultados, tablas de posiciones, equipos y jugadores de la Liga BetPlay y la Premier League.',
-  keywords: ['fútbol', 'Liga BetPlay', 'Premier League', 'resultados', 'posiciones'],
+    'Tu portal de fútbol con resultados, tablas de posiciones, equipos y jugadores. Incluye modos de juego de la Champions y el Mundial.',
+  keywords: ['fútbol', 'estadísticas', 'resultados', 'posiciones', 'minijuegos', 'champions'],
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" className={`${bebasNeue.variable} ${dmSans.variable}`}>
+    <html lang="es">
+      <head>
+        <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet" />
+      </head>
       <body>
         <Navbar />
         <main style={{ paddingTop: 'var(--navbar-height)' }}>{children}</main>

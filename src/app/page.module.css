@@ -1,61 +1,87 @@
 /* ========== Hero Section ========== */
 .hero {
   position: relative;
-  min-height: 70vh;
+  min-height: 85vh;
   display: flex;
   align-items: center;
   overflow: hidden;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Background Grid & Particles */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+  z-index: 0;
 }
 
 .heroGlow {
   position: absolute;
-  top: -40%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 120%;
-  height: 120%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 50vw;
   background: radial-gradient(
     ellipse at center,
-    rgba(0, 242, 96, 0.08) 0%,
-    rgba(5, 117, 230, 0.04) 40%,
+    rgba(0, 255, 102, 0.15) 0%,
+    rgba(0, 212, 255, 0.05) 40%,
     transparent 70%
   );
+  filter: blur(60px);
   pointer-events: none;
+  z-index: 0;
 }
 
 .heroContent {
   position: relative;
-  z-index: 1;
+  z-index: 10;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-lg);
+  padding: 4rem 1rem;
 }
 
 .heroBadge {
-  animation: fadeIn 600ms both;
+  animation: fadeInDown 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .heroTitle {
-  font-size: clamp(3rem, 10vw, 7rem);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: linear-gradient(to bottom, #ffffff 40%, rgba(255,255,255,0.3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
 }
 
 .heroSub {
-  max-width: 520px;
-  font-size: 1.05rem;
+  max-width: 600px;
+  font-size: 1.15rem;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.6;
+  font-weight: 400;
+  text-wrap: balance;
 }
 
 .heroActions {
   display: flex;
-  gap: var(--space-md);
+  gap: var(--space-lg);
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: var(--space-md);
+  margin-top: var(--space-xl);
 }
 
 .btnPrimary,

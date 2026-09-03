@@ -1,0 +1,125 @@
+/* ─── Page ─── */
+.page {
+  min-height: 100vh;
+}
+
+/* ─── Header ─── */
+.header {
+  position: relative;
+  padding: var(--space-4xl) 0 var(--space-3xl);
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.headerGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 40vw;
+  background: radial-gradient(ellipse, rgba(255, 0, 85, 0.06) 0%, rgba(0, 212, 255, 0.04) 50%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.headerContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* Live indicator */
+.liveIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: rgba(255, 0, 85, 0.1);
+  border: 1px solid rgba(255, 0, 85, 0.3);
+  border-radius: var(--radius-full);
+  animation: fadeIn 600ms both;
+}
+
+.liveDot {
+  width: 8px;
+  height: 8px;
+  background: #ff0055;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.6); }
+  70% { box-shadow: 0 0 0 8px rgba(255, 0, 85, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); }
+}
+
+.liveText {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ff0055;
+}
+
+.title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 500px;
+  text-wrap: balance;
+}
+
+/* ─── Match Grid ─── */
+.matchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--space-lg);
+}
+
+.matchWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.matchLeague {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  padding: 0.4rem 0.75rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  border: 1px solid var(--border-subtle);
+  border-bottom: none;
+}
+
+.matchWrap > :last-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 768px) {
+  .matchGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+}

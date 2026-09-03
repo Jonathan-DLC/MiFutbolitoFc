@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import {
   LEAGUES,
-  getStandings,
-  getLastLeagueEvents,
-  getNextLeagueEvents,
-} from '@/lib/api';
+  getUnifiedStandings,
+  getUnifiedLastEvents,
+  getUnifiedNextEvents,
+} from '@/lib/api-unified';
 import MatchCard from '@/components/MatchCard';
 import StandingsTable from '@/components/StandingsTable';
 import styles from './page.module.css';
@@ -21,15 +21,15 @@ export default async function HomePage() {
     premierNextEvents,
     championsNextEvents,
   ] = await Promise.all([
-    getStandings(LEAGUES.betplay.id, LEAGUES.betplay.season).catch(() => []),
-    getStandings(LEAGUES.premier.id, LEAGUES.premier.season).catch(() => []),
-    getStandings(LEAGUES.champions.id, LEAGUES.champions.season).catch(() => []),
-    getLastLeagueEvents(LEAGUES.betplay).catch(() => []),
-    getLastLeagueEvents(LEAGUES.premier).catch(() => []),
-    getLastLeagueEvents(LEAGUES.champions).catch(() => []),
-    getNextLeagueEvents(LEAGUES.betplay).catch(() => []),
-    getNextLeagueEvents(LEAGUES.premier).catch(() => []),
-    getNextLeagueEvents(LEAGUES.champions).catch(() => []),
+    getUnifiedStandings('betplay').catch(() => []),
+    getUnifiedStandings('premier').catch(() => []),
+    getUnifiedStandings('champions-league').catch(() => []),
+    getUnifiedLastEvents('betplay').catch(() => []),
+    getUnifiedLastEvents('premier').catch(() => []),
+    getUnifiedLastEvents('champions-league').catch(() => []),
+    getUnifiedNextEvents('betplay').catch(() => []),
+    getUnifiedNextEvents('premier').catch(() => []),
+    getUnifiedNextEvents('champions-league').catch(() => []),
   ]);
 
   const lastEvents = [

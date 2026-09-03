@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPlayerDetails, translateText } from '@/lib/api';
+import { getPlayerDetails, translateText } from '@/lib/api-unified';
 import styles from './page.module.css';
 
 export async function generateMetadata({ params }) {

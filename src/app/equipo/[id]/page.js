@@ -2,19 +2,19 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  getTeamDetails,
-  getTeamPlayers,
-  getTeamLastEvents,
-  getTeamNextEvents,
+  getUnifiedTeamDetails,
+  getUnifiedTeamPlayers,
+  getUnifiedTeamLastEvents,
+  getUnifiedTeamNextEvents,
   translateText,
-} from '@/lib/api';
+} from '@/lib/api-unified';
 import MatchCard from '@/components/MatchCard';
 import PlayerCard from '@/components/PlayerCard';
 import styles from './page.module.css';
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const team = await getTeamDetails(id).catch(() => null);
+  const team = await getUnifiedTeamDetails(id).catch(() => null);
   if (!team) return { title: 'Equipo no encontrado' };
   return {
     title: `${team.strTeam} — MiFutbolitoFc`,
@@ -25,10 +25,10 @@ export async function generateMetadata({ params }) {
 export default async function TeamPage({ params }) {
   const { id } = await params;
   const [team, players, lastEvents, nextEvents] = await Promise.all([
-    getTeamDetails(id).catch(() => null),
-    getTeamPlayers(id).catch(() => []),
-    getTeamLastEvents(id).catch(() => []),
-    getTeamNextEvents(id).catch(() => []),
+    getUnifiedTeamDetails(id).catch(() => null),
+    getUnifiedTeamPlayers(id).catch(() => []),
+    getUnifiedTeamLastEvents(id).catch(() => []),
+    getUnifiedTeamNextEvents(id).catch(() => []),
   ]);
 
   if (!team) notFound();

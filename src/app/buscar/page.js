@@ -1,4 +1,4 @@
-import { searchTeams } from '@/lib/api';
+import { searchTeams } from '@/lib/api-unified';
 import TeamCard from '@/components/TeamCard';
 import styles from './page.module.css';
 

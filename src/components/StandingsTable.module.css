@@ -136,6 +136,32 @@
   color: var(--text-primary);
 }
 
+/* ─── Forma reciente ─── */
+.thForm {
+  width: 100px;
+  min-width: 100px;
+}
+
+.formRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.formDot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
 @media (max-width: 768px) {
   .thTeam {
     min-width: 140px;
@@ -149,5 +175,13 @@
 
   .teamCell {
     padding: var(--space-xs) var(--space-sm);
+  }
+
+  .thForm {
+    display: none;
+  }
+
+  .formRow {
+    display: none;
   }
 }

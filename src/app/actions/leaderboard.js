@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache';
 function isGameLeaderboardId(gameId) {
   return (
     typeof gameId === 'string' &&
-    ['trivia', 'badge', 'player-clues', 'world-flag', 'world-sprint', 'player-photo'].some((prefix) =>
+    ['trivia', 'badge', 'player-clues', 'world-flag', 'world-sprint', 'player-photo', 'hidden-career'].some((prefix) =>
       gameId.startsWith(prefix)
     )
   );

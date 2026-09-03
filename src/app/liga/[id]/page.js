@@ -2,15 +2,16 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  getLeagueBySlug,
+  getUnifiedLeagueBySlug,
+  getUnifiedStandings,
+  getUnifiedLastEvents,
+  getUnifiedNextEvents,
+  getUnifiedTeamsByLeague,
+  getUnifiedKnockoutEvents,
+  getUnifiedTopScorers,
   getLeagueDetails,
-  getStandings,
-  getLastLeagueEvents,
-  getNextLeagueEvents,
-  getTeamsByLeague,
-  getKnockoutEvents,
   translateText,
-} from '@/lib/api';
+} from '@/lib/api-unified';
 import StandingsTable from '@/components/StandingsTable';
 import MatchCard from '@/components/MatchCard';
 import TeamCard from '@/components/TeamCard';
@@ -19,7 +20,7 @@ import styles from './page.module.css';
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const league = getLeagueBySlug(id);
+  const league = getUnifiedLeagueBySlug(id);
   if (!league) return { title: 'Liga no encontrada' };
   return {
     title: `${league.name} — MiFutbolitoFc`,
@@ -29,17 +30,18 @@ export async function generateMetadata({ params }) {
 
 export default async function LeaguePage({ params }) {
   const { id } = await params;
-  const league = getLeagueBySlug(id);
+  const league = getUnifiedLeagueBySlug(id);
   if (!league) notFound();
 
-  const [details, standings, lastEvents, nextEvents, teams, knockoutEvents] =
+  const [details, standings, lastEvents, nextEvents, teams, knockoutEvents, topScorers] =
     await Promise.all([
       getLeagueDetails(league.id).catch(() => null),
-      getStandings(league.id, league.season).catch(() => []),
-      getLastLeagueEvents(league).catch(() => []),
-      getNextLeagueEvents(league).catch(() => []),
-      getTeamsByLeague(league.apiName).catch(() => []),
-      getKnockoutEvents(league.id, league.season).catch(() => ({})),
+      getUnifiedStandings(league.slug).catch(() => []),
+      getUnifiedLastEvents(league.slug).catch(() => []),
+      getUnifiedNextEvents(league.slug).catch(() => []),
+      getUnifiedTeamsByLeague(league.slug).catch(() => []),
+      getUnifiedKnockoutEvents(league.id, league.season).catch(() => ({})),
+      getUnifiedTopScorers(league.slug).catch(() => []),
     ]);
 
   let descES = details?.strDescriptionES;
@@ -143,6 +145,81 @@ export default async function LeaguePage({ params }) {
               <h2>Fase Eliminatoria</h2>
             </div>
             <KnockoutBracket knockoutEvents={knockoutEvents} />
+          </div>
+        </section>
+      )}
+
+      {/* Top Goleadores — NUEVO (datos de API-Football) */}
+      {topScorers.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <div className="section-title">
+              <h2>⚽ Top Goleadores</h2>
+            </div>
+            <div className={styles.matchGrid}>
+              {topScorers.slice(0, 10).map((scorer, i) => (
+                <article
+                  key={scorer.idPlayer || i}
+                  className="glass-card animate-in"
+                  style={{
+                    animationDelay: `${i * 60}ms`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    padding: '1rem 1.25rem',
+                  }}
+                >
+                  <span style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.5rem',
+                    color: i < 3 ? 'var(--accent-primary)' : 'var(--text-muted)',
+                    minWidth: '2rem',
+                    textAlign: 'center',
+                  }}>
+                    {i + 1}
+                  </span>
+                  {scorer.strPhoto && (
+                    <Image
+                      src={scorer.strPhoto}
+                      alt={scorer.strPlayer}
+                      width={48}
+                      height={48}
+                      style={{ borderRadius: '50%', objectFit: 'cover' }}
+                    />
+                  )}
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
+                      {scorer.strPlayer}
+                    </div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                      {scorer.strTeam} · {scorer.strNationality}
+                    </div>
+                  </div>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '1.5rem',
+                      color: 'var(--accent-primary)',
+                    }}>
+                      {scorer.intGoals}
+                    </div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>GOLES</div>
+                  </div>
+                  {scorer.intAssists > 0 && (
+                    <div style={{ textAlign: 'center' }}>
+                      <div style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: '1.25rem',
+                        color: 'var(--text-secondary)',
+                      }}>
+                        {scorer.intAssists}
+                      </div>
+                      <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>ASIST</div>
+                    </div>
+                  )}
+                </article>
+              ))}
+            </div>
           </div>
         </section>
       )}

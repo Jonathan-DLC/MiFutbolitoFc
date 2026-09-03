@@ -1,0 +1,244 @@
+/* ─── Page ─── */
+.page {
+  min-height: 100vh;
+}
+
+/* ─── Header ─── */
+.header {
+  position: relative;
+  padding: var(--space-4xl) 0 var(--space-3xl);
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.headerGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 40vw;
+  background: radial-gradient(ellipse, rgba(0, 255, 102, 0.08) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.headerContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 500px;
+  text-wrap: balance;
+}
+
+/* ─── Leagues Grid ─── */
+.leaguesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: var(--space-xl);
+}
+
+/* ─── League Card ─── */
+.leagueCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.leagueCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-elevated), 0 0 30px rgba(0, 255, 102, 0.08);
+  background: rgba(17, 23, 36, 0.85);
+}
+
+.cardGlow {
+  position: absolute;
+  top: -100%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.05), transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+}
+
+.leagueCard:hover .cardGlow {
+  opacity: 1;
+}
+
+/* ─── Card Header ─── */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.cardBadge {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+  transition: transform var(--transition-spring);
+}
+
+.leagueCard:hover .cardBadge {
+  transform: scale(1.1);
+}
+
+.cardFlag {
+  font-size: 2.5rem;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cardName {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardCountry {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* ─── Mini Table ─── */
+.miniTable {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.miniRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 4px;
+  transition: background var(--transition-fast);
+}
+
+.miniRow:first-child {
+  background: rgba(0, 255, 102, 0.05);
+}
+
+.miniPos {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  width: 1.5rem;
+  text-align: center;
+}
+
+.miniRow:first-child .miniPos {
+  color: var(--accent-primary);
+}
+
+.miniName {
+  flex: 1;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.miniPts {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* ─── Card Footer ─── */
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cardTeams {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.cardArrow {
+  font-size: 1.2rem;
+  color: var(--accent-primary);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all var(--transition-base);
+}
+
+.leagueCard:hover .cardArrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 768px) {
+  .leaguesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+}

@@ -1,9 +1,8 @@
 import {
-  getTeamPlayers,
-  getTeamsByLeague,
   getWorldCupPlayers,
   getWorldCupTeams,
-} from '@/lib/api';
+} from '@/lib/api-unified';
+import { getTeamPlayers, getTeamsByLeague } from '@/lib/api';
 import { connection } from 'next/server';
 import GamesClient from './GamesClient';
 import styles from './page.module.css';
